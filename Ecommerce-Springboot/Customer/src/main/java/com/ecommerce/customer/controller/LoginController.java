@@ -5,6 +5,9 @@ import com.ecommerce.library.model.Customer;
 import com.ecommerce.library.service.CustomerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +19,9 @@ import org.springframework.web.bind.annotation.*;
 public class LoginController {
     private final CustomerService customerService;
     private final BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JavaMailSender mailSender;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model) {
@@ -53,6 +59,7 @@ public class LoginController {
             if (customerDto.getPassword().equals(customerDto.getConfirmPassword())) {
                 customerDto.setPassword(passwordEncoder.encode(customerDto.getPassword()));
                 customerService.save(customerDto);
+                sendEmail(customerDto.getUsername());
                 model.addAttribute("success", "Register successfully!");
             } else {
                 model.addAttribute("error", "Password is incorrect");
@@ -65,6 +72,12 @@ public class LoginController {
         }
         return "register";
     }
+    public void sendEmail(String toEmail) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(toEmail);
+        message.setSubject("Chào mừng bạn đến với Denni Trần Shop");
 
-
+        message.setText("Bạn đã tạo tài khoản thành công, bạn đã l một thaành viên của Denni Trần Shop.");
+        mailSender.send(message);
+    }
 }
