@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:fragment="head">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Metas -->
+    <title th:text="${title}">Menu</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- Site Icons -->
+    <link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+    <link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
+
+    <!--Thêm mới-->
+    <link th:href="@{/vendor/bootstrap/icon/css/boxicons.min.css}" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <!-- Site CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" th:href="@{/css/responsive.css}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/custom.css}">
+</head>
+<body>
+<!-- Start Main Top -->
+<div class="main-top" th:fragment="main-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="our-link">
+                    <ul>
+                        <li><a href="#"> Call US : +84967631186</a></li>
+                        <li><a href="#"><i class="fas fa-location-arrow"></i> Address: Km9, Nguyen Trai, Thanh Xuan,
+                            Ha Noi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="login-box">
+                    <select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In" onchange="location = this.value;">
+                        <option>Authentication</option>
+                        <option th:if = "${session.username == null}" value = "http://localhost:8889/shop/login">Sign In </option>
+                        <option th:if = "${session.username == null}" value ="http://localhost:8889/shop/register">Sign Up</option>
+                    </select>
+                </div>
+                <div class="text-slid-box">
+                    <div id="offer-box" class="carouselTicker">
+                        <ul class="offer-box">
+                            <li>
+                                <i class="fab fa-opencart"></i> Off 5% for new members
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> Freeship
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> 10% off Entire Purchase Promo code: OceanPrime
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> Off upto 10%! Shop Now
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> Off 5% for new members
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> Freeship
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> 10% off Entire Purchase Promo code: OceanPrime
+                            </li>
+                            <li>
+                                <i class="fab fa-opencart"></i> Off 10%! Shop Now
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Main Top -->
+
+<!-- Start Main Top -->
+<header class="main-header" th:fragment="main-header">
+    <!-- Start Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+        <div class="container">
+            <!-- Start Header Navigation -->
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu"
+                        aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" th:href="@{/}"><img th:src="@{/images/logo.png}" class="logo" width="90"
+                                                            height="90" alt=""></a>
+            </div>
+            <!-- End Header Navigation -->
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                    <li class="nav-item"><a class="nav-link" th:href="@{/}">Thông tin</a></li>
+                    <li class="nav-item"><a class="nav-link" th:href="@{/menu}">Trang chủ</a></li>
+
+                    <li class="dropdown">
+                        <a class="nav-link dropdown-toggle arrow" data-toggle="dropdown" href="#" >Shop</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a th:href="@{/shop-detail}">Cửa hàng</a></li>
+                            <li><a th:href="@{/orders}">Đơn hàng</a></li>
+                            <li><a th:href="@{/profile}">Tài khoản</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item active"><a class="nav-link" th:href="@{/contact}">Liên hệ</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+
+            <!-- Start Atribute Navigation -->
+            <div class="attr-nav2">
+                <ul>
+                    <li class="search"><a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6 .1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+                    </a></li>
+                    <li class="side-menu">
+                        <a href="#" th:href="@{/cart}">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M160 112c0-35.3 28.7-64 64-64s64 28.7 64 64v48H160V112zm-48 48H48c-26.5 0-48 21.5-48 48V416c0 53 43 96 96 96H352c53 0 96-43 96-96V208c0-26.5-21.5-48-48-48H336V112C336 50.1 285.9 0 224 0S112 50.1 112 112v48zm24 48a24 24 0 1 1 0 48 24 24 0 1 1 0-48zm152 24a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z"/></svg>
+                            <span class="badge"
+                                  th:text="${session.totalItems == null} ? '0' : ${session.totalItems}"></span>
+                            <p>Giỏ hàng</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- End Atribute Navigation -->
+        </div>
+    </nav>
+    <!-- End Navigation -->
+</header>
+<!-- End Main Top -->
+
+<!-- Start Top Search -->
+<div class="top-search" th:fragment="top-search">
+    <div class="container">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+            <input type="text" class="form-control" placeholder="Search">
+            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+        </div>
+    </div>
+</div>
+<!-- End Top Search -->
+
+<!-- Start Slider -->
+<div class="all-title-box" th:fragment="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 th:text="${page}"></h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="home.html">Ocean Prime</a></li>
+                    <li class="breadcrumb-item active" th:text="${page}"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Slider -->
+
+<!-- Start Feed  -->
+<div class="instagram-box" th:fragment="instagram-box">
+    <div class="main-instagram owl-carousel owl-theme">
+        <div class="item">
+            <div class="ins-inner-box">
+                <a href="index.html"><img th:src="@{/images/banner1.jfif}" alt=""/></a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img th:src="@{/images/banner2.jfif}" alt=""/>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <a href="index.html"><img th:src="@{/images/banner3.jfif}" alt=""/></a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <a href="index.html"><img th:src="@{/images/banner4.jfif}" alt=""/></a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <a href="index.html"><img th:src="@{/images/banner5.jfif}"
+                                          alt=""/></a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <a href="index.html"><img th:src="@{/images/banner6.jfif}"
+                                          alt=""/></a>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <a href="index.html"><img th:src="@{/images/banner7.jfif}" alt=""/></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End Feed  -->
+
+
+<!-- Start Footer  -->
+<footer th:fragment="footer">
+    <div class="footer-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="footer-top-box">
+                        <h3>Business Time</h3>
+                        <ul class="list-time">
+                            <li>Monday - Sunday: 08.00am to 10.00pm</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="footer-top-box">
+                        <h3>Contact Us</h3>
+                        <ul class="list-time">
+                            <li><i class="fas fa-phone-square"></i> Phone number: +8468241063</li>
+                            <li><i class="fas fa-envelope"></i> Email: BongMaGiuaDem@gmail.com</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Address: 25/3C ấp Nam Lân, xã Bà Điểm, huyện Hóc Môn</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="footer-top-box">
+                        <h3>Social Media</h3>
+                        <p>Come with Ocean Prime shop - Only Fresh </p>
+                        <ul>
+                            <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<div th:fragment="script">
+    <!-- ALL JS FILES -->
+    <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    <script th:src="@{/js/popper.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <!-- ALL PLUGINS -->
+    <script th:src="@{/js/jquery.superslides.min.js}"></script>
+    <script th:src="@{/js/bootstrap-select.js}"></script>
+    <script th:src="@{/js/inewsticker.js}"></script>
+    <script th:src="@{/js/bootsnav.js}"></script>
+    <script th:src="@{/js/images-loded.min.js}"></script>
+    <script th:src="@{/js/isotope.min.js}"></script>
+    <script th:src="@{/js/owl.carousel.min.js}"></script>
+    <script th:src="@{/js/baguetteBox.min.js}"></script>
+    <script th:src="@{/js/form-validator.min.js}"></script>
+    <script th:src="@{/js/contact-form-script.js}"></script>
+    <script th:src="@{/js/custom.js}"></script>
+
+    <!--    <script src="js/jquery-3.2.1.min.js"></script>-->
+<!--    <script src="js/popper.min.js"></script>-->
+<!--    <script src="js/bootstrap.min.js"></script>-->
+<!--    &lt;!&ndash; ALL PLUGINS &ndash;&gt;-->
+<!--    <script src="js/jquery.superslides.min.js"></script>-->
+<!--    <script src="js/bootstrap-select.js"></script>-->
+<!--    <script src="js/inewsticker.js"></script>-->
+<!--    <script src="js/bootsnav.js."></script>-->
+<!--    <script src="js/images-loded.min.js"></script>-->
+<!--    <script src="js/isotope.min.js"></script>-->
+<!--    <script src="js/owl.carousel.min.js"></script>-->
+<!--    <script src="js/baguetteBox.min.js"></script>-->
+<!--    <script src="js/form-validator.min.js"></script>-->
+<!--    <script src="js/contact-form-script.js"></script>-->
+<!--    <script src="js/custom.js"></script>-->
+</div>
+</body>
+</html>

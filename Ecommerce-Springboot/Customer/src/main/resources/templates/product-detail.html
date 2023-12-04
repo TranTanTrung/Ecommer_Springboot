@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<!-- Basic -->
+<head>
+    <div th:replace="~{fragments::head}"></div>
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<!-- Start Main Top -->
+<div th:replace="~{fragments::main-top}"></div>
+<!-- End Main Top -->
+
+<!-- Start Main Top -->
+<header th:replace="~{fragments::main-header}"></header>
+<!-- End Main Top -->
+
+<!-- Start Top Search -->
+<div th:replace="~{fragments::top-search}"></div>
+<!-- End Top Search -->
+
+<!-- Start All Title Box -->
+<div th:replace="~{fragments::all-title-box}"></div>
+<!-- End All Title Box -->
+
+<!-- Start Shop Detail  -->
+<div class="shop-detail-box-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-1" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-1" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-1" data-slide-to="2"></li>
+                        <li data-target="#carousel-example-1" data-slide-to="3"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <!-- Image 1 -->
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" th:src="'data:image/jpeg;base64,' + ${productDetail.image}" alt="First slide">
+                        </div>
+                        <!-- Image 2 -->
+                        <div class="carousel-item">
+                            <img class="d-block w-100" th:src="'data:image1/jpeg;base64,' + ${productDetail.image1}" alt="Second slide">
+                        </div>
+                        <!-- Image 3 -->
+                        <div class="carousel-item">
+                            <img class="d-block w-100" th:src="'data:image2/jpeg;base64,' + ${productDetail.image2}" alt="Third slide">
+                        </div>
+                        <!-- Image 4 -->
+                        <div class="carousel-item">
+                            <img class="d-block w-100" th:src="'data:image3/jpeg;base64,' + ${productDetail.image3}" alt="Fourth slide">
+                        </div>
+                        <!-- Image 5 -->
+                        <div class="carousel-item">
+                            <img class="d-block w-100" th:src="'data:image4/jpeg;base64,' + ${productDetail.image4}" alt="Five slide">
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="carousel-control-prev" href="#carousel-example-1" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carousel-example-1" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6">
+                <form th:action="@{/add-to-cart}" method="post">
+                    <div class="single-product-details">
+                        <h2 th:text="${productDetail.name}"></h2>
+                        <h5 th:text="${#numbers.formatDecimal(productDetail.costPrice, 0, 'COMMA', 2, 'POINT')} + ' VNĐ'"></h5>
+                        <h4>Short Description:</h4>
+                        <p th:utext="${productDetail.description.replaceAll('\n', '<br>')}"></p>
+                        <div class="price-box-bar">
+                            <div class="cart-and-bay-btn">
+                                <input type="hidden" th:value="${productDetail.id}" name="id" class="form-control">
+                                <input type="submit" class="btn hvr-hover" value="Add to cart">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-5">
+        <div class="col-lg-12">
+            <div class="title-all text-center">
+                <h1>Related Products</h1>
+            </div>
+            <div class="featured-products-box owl-carousel owl-theme">
+                <div class="item" th:each="product : ${products}">
+                    <form th:action="@{/add-to-cart}" method="post">
+                        <div class="products-single fix">
+                            <div class="box-img-hover">
+                                <img th:src="'data:image/jpeg;base64,' + ${product.image}" class="img-fluid"
+                                     alt="Image">
+                                <div class="mask-icon">
+                                    <ul>
+                                        <li><a th:href="@{/product-detail/{id}(id = ${product.id})}"
+                                               data-toggle="tooltip"
+                                               data-placement="right"
+                                               title="View"><i class="fas fa-eye"></i></a></li>
+                                    </ul>
+                                    <input type="hidden" th:value="${product.id}" name="id" class="form-control">
+                                    <input type="submit" class="btn hvr-hover" value="Add to cart">
+                                </div>
+                            </div>
+                            <div class="why-text">
+                                <h4 th:text="${product.name}"></h4>
+                                <h5 th:text="${#numbers.formatDecimal(productDetail.costPrice, 0, 'COMMA', 2, 'POINT')} + ' VNĐ'"></h5>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<!-- End Cart -->
+
+<!-- Start Feed  -->
+<div th:replace="~{fragments::instagram-box}">
+</div>
+
+<!-- End Feed  -->
+
+
+<!-- Start Footer  -->
+<footer th:replace="~{fragments::footer}">
+</footer>
+
+<div th:replace="~{fragments::script}"></div>
+</body>
+
+</html>
