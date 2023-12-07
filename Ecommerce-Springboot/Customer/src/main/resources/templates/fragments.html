@@ -57,8 +57,8 @@
                 <div class="login-box">
                     <select id="basic" class="selectpicker show-tick form-control" data-placeholder="Sign In" onchange="location = this.value;">
                         <option>Authentication</option>
-                        <option th:if = "${session.username == null}" value = "http://localhost:8889/shop/login">Sign In </option>
-                        <option th:if = "${session.username == null}" value ="http://localhost:8889/shop/register">Sign Up</option>
+                        <option th:if = "${session.username == null}" value = "http://localhost:8020/shop/login">Sign In </option>
+                        <option th:if = "${session.username == null}" value ="http://localhost:8020/shop/register">Sign Up</option>
                     </select>
                 </div>
                 <div class="text-slid-box">
@@ -188,7 +188,7 @@
     <div class="main-instagram owl-carousel owl-theme">
         <div class="item">
             <div class="ins-inner-box">
-                <a href="index.html"><img th:src="@{/images/banner1.jfif}" alt=""/></a>
+                <a href="index"><img th:src="@{/images/banner1.jfif}" alt=""/></a>
             </div>
         </div>
         <div class="item">
@@ -198,29 +198,29 @@
         </div>
         <div class="item">
             <div class="ins-inner-box">
-                <a href="index.html"><img th:src="@{/images/banner3.jfif}" alt=""/></a>
+                <a href="index"><img th:src="@{/images/banner3.jfif}" alt=""/></a>
             </div>
         </div>
         <div class="item">
             <div class="ins-inner-box">
-                <a href="index.html"><img th:src="@{/images/banner4.jfif}" alt=""/></a>
+                <a href="index"><img th:src="@{/images/banner4.jfif}" alt=""/></a>
             </div>
         </div>
         <div class="item">
             <div class="ins-inner-box">
-                <a href="index.html"><img th:src="@{/images/banner5.jfif}"
+                <a href="index"><img th:src="@{/images/banner5.jfif}"
                                           alt=""/></a>
             </div>
         </div>
         <div class="item">
             <div class="ins-inner-box">
-                <a href="index.html"><img th:src="@{/images/banner6.jfif}"
+                <a href="index"><img th:src="@{/images/banner6.jfif}"
                                           alt=""/></a>
             </div>
         </div>
         <div class="item">
             <div class="ins-inner-box">
-                <a href="index.html"><img th:src="@{/images/banner7.jfif}" alt=""/></a>
+                <a href="index"><img th:src="@{/images/banner7.jfif}" alt=""/></a>
             </div>
         </div>
     </div>
