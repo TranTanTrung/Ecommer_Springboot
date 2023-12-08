@@ -59,6 +59,37 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findAll();
     }
 
+    @Override
+    public List<Order> findAllOrdersSuccessful() {
+        List<Order> allOrders = orderRepository.findAll(); // Thay đổi repository này nếu tên thực tế khác
+
+        List<Order> successfulOrders = new ArrayList<>();
+
+        for (Order order : allOrders) {
+            // Giả sử bạn có một trường "success" trong đối tượng Order để xác định đơn hàng successful
+            if (order.isSuccess()) {
+                successfulOrders.add(order);
+            }
+        }
+
+        return successfulOrders;
+    }
+
+    @Override
+    public List<Order> findAllOrdersFailed() {
+        List<Order> allOrders = orderRepository.findAll(); // Thay đổi repository này nếu tên thực tế khác
+
+        List<Order> successfulOrders = new ArrayList<>();
+
+        for (Order order : allOrders) {
+            // Giả sử bạn có một trường "success" trong đối tượng Order để xác định đơn hàng successful
+            if (!order.isSuccess()) {
+                successfulOrders.add(order);
+            }
+        }
+        return successfulOrders;
+    }
+
 
     @Override
     public Order acceptOrder(Long id) {
@@ -69,9 +100,31 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void cancelOrder(Long id) {
-        orderRepository.deleteById(id);
+    public Order cancelOrder(Long id) {
+        Order order = orderRepository.getById(id);
+        order.setAccept(false);
+        order.setDeliveryDate(new Date());
+        order.setOrderStatus("Pending");
+        return orderRepository.save(order);
     }
 
+    @Override
+    public Order successfulOrder(Long id) {
+        Order order = orderRepository.getById(id);
+        order.setAccept(true);
+        order.setDeliveryDate(new Date());
+        order.setSuccess(true);
+        order.setOrderStatus("Successful Order");
+        return orderRepository.save(order);
+    }
 
+    @Override
+    public Order failedOrder(Long id) {
+        Order order = orderRepository.getById(id);
+        order.setAccept(true);
+        order.setDeliveryDate(new Date());
+        order.setSuccess(false);
+        order.setOrderStatus("Order Failed");
+        return orderRepository.save(order);
+    }
 }

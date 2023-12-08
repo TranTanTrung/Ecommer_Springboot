@@ -13,7 +13,13 @@ public interface OrderService {
 
     List<Order> findALlOrders();
 
+    List<Order> findAllOrdersSuccessful();
+
+    List<Order> findAllOrdersFailed();
+
     Order acceptOrder(Long id);
 
-    void cancelOrder(Long id);
+    Order cancelOrder(Long id);
+    Order successfulOrder(Long id);
+    Order failedOrder(Long id);
 }

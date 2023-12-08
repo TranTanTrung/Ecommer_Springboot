@@ -26,6 +26,7 @@ public class Order {
     private int quantity;
     private String paymentMethod;
     private boolean isAccept;
+    private boolean isSuccess;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id")

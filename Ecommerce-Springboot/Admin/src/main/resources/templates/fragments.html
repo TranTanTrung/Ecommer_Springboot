@@ -65,14 +65,14 @@
     <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
        aria-controls="collapseTwo">
       <i class='bx bxs-component'></i>
-      <span>Components</span>
+      <span>Thành phần</span>
     </a>
     <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
          data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Custom Components:</h6>
-        <a class="collapse-item active" href="categories.html" th:href="@{/categories}">Manage Category</a>
-        <a class="collapse-item" href="products.html" th:href = "@{/products/0}">Manage Product</a>
+        <h6 class="collapse-header">Tùy chỉnh:</h6>
+        <a class="collapse-item active" href="categories.html" th:href="@{/categories}">Danh mục</a>
+        <a class="collapse-item" href="products.html" th:href = "@{/products/0}">Sản pẩm</a>
       </div>
     </div>
   </li>
@@ -82,13 +82,15 @@
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
        aria-expanded="true" aria-controls="collapseUtilities">
       <i class='bx bxs-ghost'></i>
-      <span>Manage Orders</span>
+      <span>Đơn hàng</span>
     </a>
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
          data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Custom Utilities:</h6>
-        <a class="collapse-item" th:href="@{/orders}">Orders</a>
+        <h6 class="collapse-header">Tùy chỉnh:</h6>
+        <a class="collapse-item" th:href="@{/orders}">Đơn đặt hàng</a>
+        <a class="collapse-item" th:href="@{/successful}">Đơn hàng thành công</a>
+        <a class="collapse-item" th:href="@{/failed}">Đơn hàng thất bại</a>
       </div>
     </div>
   </li>
@@ -98,7 +100,7 @@
 
   <!-- Heading -->
   <div class="sidebar-heading">
-    Addons
+    Tiện ích
   </div>
 
   <!-- Nav Item - Pages Collapse Menu -->
@@ -106,18 +108,18 @@
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
        aria-expanded="true" aria-controls="collapsePages">
       <i class="fas fa-fw fa-folder"></i>
-      <span>Pages</span>
+      <span>Trang</span>
     </a>
     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Login Screens:</h6>
-        <a class="collapse-item" href="login.html">Login</a>
-        <a class="collapse-item" href="register.html">Register</a>
-        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+        <a class="collapse-item" href="login.html">Đăng nhập</a>
+        <a class="collapse-item" href="register.html">Đăng ký</a>
+        <a class="collapse-item" href="forgot-password.html">Quên mật khẩu</a>
         <div class="collapse-divider"></div>
-        <h6 class="collapse-header">Other Pages:</h6>
+        <h6 class="collapse-header">Những trang khác:</h6>
         <a class="collapse-item" href="404.html">404 Page</a>
-        <a class="collapse-item" href="blank.html">Blank Page</a>
+        <a class="collapse-item" href="blank.html">Trang trống</a>
       </div>
     </div>
   </li>
@@ -126,14 +128,14 @@
   <li class="nav-item">
     <a class="nav-link" href="charts.html">
       <i class="fas fa-fw fa-chart-area"></i>
-      <span>Charts</span></a>
+      <span>Biểu đồ</span></a>
   </li>
 
   <!-- Nav Item - Tables -->
   <li class="nav-item">
     <a class="nav-link" href="update-product.html">
       <i class="fas fa-fw fa-table"></i>
-      <span>Tables</span></a>
+      <span>Bảng</span></a>
   </li>
 
   <!-- Divider -->
@@ -206,7 +208,7 @@
       <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
            aria-labelledby="alertsDropdown">
         <h6 class="dropdown-header">
-          Alerts Center
+          Cảnh báo
         </h6>
         <a class="dropdown-item d-flex align-items-center" href="#">
           <div class="mr-3">

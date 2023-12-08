@@ -50,7 +50,11 @@
                         <th scope="col">Category</th>
                         <th scope="col">Price</th>
                         <th scope="col">Quantity</th>
-                        <th scope="col">Image</th>
+                        <th scope="col">Image1</th>
+                        <th scope="col">Image2</th>
+                        <th scope="col">Image3</th>
+                        <th scope="col">Image4</th>
+                        <th scope="col">Image5</th>
                         <th scope="col">Update</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -61,10 +65,28 @@
                         <td th:text = "${product.category.name}"></td>
                         <td th:text="${#numbers.formatDecimal(product.costPrice, 0, 'COMMA', 2, 'POINT')}"></td>
                         <td th:text = "${product.currentQuantity}"></td>
+
                         <td>
                             <img class = "my-product-image" style="height: 40px; width: 40px;" alt=""
                                  th:src="'data:image/jpeg;base64,' + ${product.image}">
                         </td>
+                        <td>
+                            <img class = "my-product-image" style="height: 40px; width: 40px;" alt=""
+                                 th:src="'data:image1/jpeg;base64,' + ${product.image1}">
+                        </td>
+                        <td>
+                            <img class = "my-product-image" style="height: 40px; width: 40px;" alt=""
+                                 th:src="'data:image2/jpeg;base64,' + ${product.image2}">
+                        </td>
+                        <td>
+                            <img class = "my-product-image" style="height: 40px; width: 40px;" alt=""
+                                 th:src="'data:image3/jpeg;base64,' + ${product.image3}">
+                        </td>
+                        <td>
+                            <img class = "my-product-image" style="height: 40px; width: 40px;" alt=""
+                                 th:src="'data:image4/jpeg;base64,' + ${product.image4}">
+                        </td>
+
                         <td><a th:href="@{/update-product/{id}(id= ${product.id})}" class="btn btn-primary">Update</a></td>
                         <td>
                             <a th:if="${product.deleted} == true" th:href="@{/enable-product(id = ${product.id})}"

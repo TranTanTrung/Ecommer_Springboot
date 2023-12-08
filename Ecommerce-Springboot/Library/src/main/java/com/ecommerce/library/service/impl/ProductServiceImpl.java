@@ -1,6 +1,7 @@
 package com.ecommerce.library.service.impl;
 
 import com.ecommerce.library.dto.ProductDto;
+import com.ecommerce.library.model.Category;
 import com.ecommerce.library.model.Product;
 import com.ecommerce.library.repository.ProductRepository;
 import com.ecommerce.library.service.ProductService;
@@ -13,9 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -32,7 +31,27 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductDto> products() {
-        return transferData(productRepository.getAllProduct());
+        List<ProductDto> allProducts = transferData(productRepository.getAllProduct());
+
+// Tạo một Map để lưu trữ danh sách sản phẩm theo từng category
+        Map<String, List<ProductDto>> productsByCategory = new HashMap<>();
+
+// Phân loại sản phẩm vào từng category
+        for (ProductDto product : allProducts) {
+            Category category = product.getCategory();
+            productsByCategory.computeIfAbsent(String.valueOf(category), k -> new ArrayList<>()).add(product);
+        }
+
+// Giới hạn số lượng sản phẩm trong mỗi category là 4
+        int maxProductsPerCategory = 4;
+        List<ProductDto> limitedProducts = new ArrayList<>();
+
+        for (List<ProductDto> categoryProducts : productsByCategory.values()) {
+            int count = Math.min(maxProductsPerCategory, categoryProducts.size());
+            limitedProducts.addAll(categoryProducts.subList(0, count));
+        }
+
+        return limitedProducts;
     }
 
     @Override

@@ -63,6 +63,12 @@
                             <a th:if="${order.accept} == false" th:href="@{/accept-order(id = ${order.id})}"
                                class=" btn btn-secondary">Accept</a>
                         </td>
+                        <td>
+                            <a th:if="${order.success} != false"  th:href="@{/order-failed(id = ${order.id})}"
+                               class="btn btn-primary">Successful</a>
+                            <a th:if="${order.success} == false" th:href="@{/successful-order(id = ${order.id})}"
+                               class="btn btn-secondary">Failed</a>
+                        </td>
                         </a>
                         </td>
                     </tr>

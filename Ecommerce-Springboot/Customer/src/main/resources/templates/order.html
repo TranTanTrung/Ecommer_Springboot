@@ -61,20 +61,20 @@
                                 <a th:if = "${order.accept != null}" href="#">
                                     [(${order.deliveryDate})]
                                 </a>
-                                <a th:if = "${order.accept == null}"><p>Pending</p> </a>
+                                <a th:if = "${order.accept == null}"><p>Chưa giải quyết</p> </a>
                             </td>
                             <td class="price-pr">
                                 <p th:text="${order.orderStatus}"></p>
                             </td>
                             <td class="quantity-box" th:text="${order.quantity}"> </td>
                             <td class="total-pr">
-                                <p style="color: red">$ [(${order.totalPrice})]</p>
+                                <p style="color: red" th:text="${#numbers.formatDecimal(order.totalPrice, 0, 'COMMA', 2, 'POINT') + 'VNĐ'}"></p>
                             </td>
                             <td class="total-pr" style="color: black">
                                 <span></span>[(${order.paymentMethod})]</span>
                             </td>
                             <td>
-                                <a th:href="@{/cancel-order/(id = ${order.id})}" class="button-cancel">Cancel</a>
+                                <a th:href="@{/cancel-order/(id = ${order.id})}" class="button-cancel">Hủy</a>
                             </td>
                             </a>
                             </td>
