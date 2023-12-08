@@ -47,7 +47,7 @@ public class AuthController {
     public String index(Model model) {
         model.addAttribute("title", "Home Page");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+        if (authentication == null || !authentication.isAuthenticated()) {
             return "redirect:/login";
         }
         return "index";

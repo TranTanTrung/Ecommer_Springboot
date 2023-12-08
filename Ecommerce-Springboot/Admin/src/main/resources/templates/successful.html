@@ -29,12 +29,12 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th class="order-date">Order Date</th>
-                        <th>Delivery Date</th>
-                        <th class="price-pr">Order Status</th>
-                        <th class="quantity-box">Total Price</th>
-                        <th class="total-pr">Payment Method</th>
-                        <th>Action</th>
+                        <th class="order-date">Ngày Đặt</th>
+                        <th>Ngày giao</th>
+                        <th class="price-pr">Tình trạng</th>
+                        <th class="quantity-box">Số lượng</th>
+                        <th class="total-pr">Tổng tiền</th>
+                        <th>Phương thức thanh toán</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -68,7 +68,7 @@
                 <!-- Footer -->
                 <footer th:replace="~{fragments::footer}"></footer>
                 <!-- End of Footer -->
-
+                <a th:href="@{/orders/export/excel}" class="btn btn-success">Export to Excel</a>
             </div>
             <!-- End of Content Wrapper -->
 

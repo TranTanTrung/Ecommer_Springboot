@@ -61,12 +61,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> findAllOrdersSuccessful() {
-        List<Order> allOrders = orderRepository.findAll(); // Thay đổi repository này nếu tên thực tế khác
+        List<Order> allOrders = orderRepository.findAll();
 
         List<Order> successfulOrders = new ArrayList<>();
 
         for (Order order : allOrders) {
-            // Giả sử bạn có một trường "success" trong đối tượng Order để xác định đơn hàng successful
             if (order.isSuccess()) {
                 successfulOrders.add(order);
             }
@@ -77,12 +76,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> findAllOrdersFailed() {
-        List<Order> allOrders = orderRepository.findAll(); // Thay đổi repository này nếu tên thực tế khác
+        List<Order> allOrders = orderRepository.findAll();
 
         List<Order> successfulOrders = new ArrayList<>();
 
         for (Order order : allOrders) {
-            // Giả sử bạn có một trường "success" trong đối tượng Order để xác định đơn hàng successful
             if (!order.isSuccess()) {
                 successfulOrders.add(order);
             }
