@@ -1,12 +1,13 @@
 package com.ecommerce.admin.controller;
 
 import com.ecommerce.library.dto.AdminDto;
-import com.ecommerce.library.dto.ProductDto;
+
 import com.ecommerce.library.model.Admin;
+import com.ecommerce.library.model.Customer;
 import com.ecommerce.library.service.AdminService;
+import com.ecommerce.library.service.CustomerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -25,7 +26,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AuthController {
     private final AdminService adminService;
-
+    private final CustomerService customerService;
     private final BCryptPasswordEncoder passwordEncoder;
 
 
@@ -44,6 +45,17 @@ public class AuthController {
         model.addAttribute("manageAdmin", admins);
         model.addAttribute("size", admins.size());
         return "manageAdmin";
+    }
+
+    @GetMapping("/manageCustomer")
+    public String manageCustomer(Model model, Principal principal) {
+        if (principal == null) {
+            return "redirect:/login";
+        }
+        List<Customer> customerDtos = customerService.findAll();
+        model.addAttribute("manageCustomer", customerDtos);
+        model.addAttribute("size", customerDtos.size());
+        return "manageCustomer";
     }
 
     //Profile

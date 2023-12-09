@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -45,6 +46,11 @@ public class CustomerServiceImpl implements CustomerService {
         customerDto.setCity(customer.getCity());
         customerDto.setCountry(customer.getCountry());
         return customerDto;
+    }
+
+    @Override
+    public List<Customer> findAll() {
+        return customerRepository.findAll();
     }
 
     @Override
