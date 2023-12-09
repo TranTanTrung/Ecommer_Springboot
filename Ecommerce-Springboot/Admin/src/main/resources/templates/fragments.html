@@ -105,6 +105,21 @@
 
   <!-- Nav Item - Pages Collapse Menu -->
   <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAccount"
+       aria-expanded="true" aria-controls="collapseAccount">
+      <i class="fas fa-fw fa-folder"></i>
+      <span>Quản lý tài khoản</span>
+    </a>
+    <div id="collapseAccount" class="collapse" aria-labelledby="headingAccount" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" href="manageAdmin.html" th:href="@{/manageAdmin}">Admin</a>
+          <a class="collapse-item" href="">Customer</a>
+      </div>
+    </div>
+  </li>
+
+  <!-- Nav Item - Pages Collapse Menu -->
+  <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
        aria-expanded="true" aria-controls="collapsePages">
       <i class="fas fa-fw fa-folder"></i>
@@ -113,9 +128,9 @@
     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Login Screens:</h6>
-        <a class="collapse-item" href="login.html">Đăng nhập</a>
-        <a class="collapse-item" href="register.html">Đăng ký</a>
-        <a class="collapse-item" href="forgot-password.html">Quên mật khẩu</a>
+        <a class="collapse-item" href="login.html" th:href="@{/login}">Đăng nhập</a>
+        <a class="collapse-item" href="register.html" th:href="@{/register}">Đăng ký</a>
+        <a class="collapse-item" href="forgot-password.html" th:href="@{/forgot-password}">Quên mật khẩu</a>
         <div class="collapse-divider"></div>
         <h6 class="collapse-header">Những trang khác:</h6>
         <a class="collapse-item" href="404.html">404 Page</a>

@@ -28,7 +28,7 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <div class="input-group" style="width: 30%; margin-bottom: 20px;">
+                <!--<div class="input-group" style="width: 30%; margin-bottom: 20px;">
                     <form th:action = "@{/search-products/0}" method = "get">
                         <input type="text" class="form-control rounded" placeholder="Search" name = "keyword" aria-label="Search"
                                aria-describedby="search-addon" />
@@ -42,63 +42,31 @@
                 </div>
                 <div th:if = "${error}" class="text-center alert alert-danger">
                     <p th:text = "${error}"></p>
-                </div>
+                </div>-->
                 <table class="table table-bordered" th:if = "${size > 0}">
                     <thead>
                     <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Image1</th>
-                        <th scope="col">Image2</th>
-                        <th scope="col">Image3</th>
-                        <th scope="col">Image4</th>
-                        <th scope="col">Image5</th>
-                        <th scope="col">Update</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Password</th>
+                        <th scope="col">User Name</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each = "product : ${products}">
-                        <th scope="row" th:text = "${product.name}"></th>
-                        <td th:text = "${product.category.name}"></td>
-                        <td th:utext="${#numbers.formatDecimal(product.costPrice, 0, 'COMMA', 2, 'POINT')}"></td>
-                        <td th:text = "${product.currentQuantity}"></td>
-                        <td>
-                            <img class = "my-product-image" style="height: 40px; width: 40px;" alt=""
-                                 th:src="'data:image/jpeg;base64,' + ${product.image}">
-                        </td>
-                        <td>
-                            <img class = "my-product-image1" style="height: 40px; width: 40px;" alt=""
-                                 th:src="'data:image1/jpeg;base64,' + ${product.image1}">
-                        </td>
-                        <td>
-                            <img class = "my-product-image2" style="height: 40px; width: 40px;" alt=""
-                                 th:src="'data:image2/jpeg;base64,' + ${product.image2}">
-                        </td>
-                        <td>
-                            <img class = "my-product-image3" style="height: 40px; width: 40px;" alt=""
-                                 th:src="'data:image3/jpeg;base64,' + ${product.image3}">
-                        </td>
-                        <td>
-                            <img class = "my-product-image4" style="height: 40px; width: 40px;" alt=""
-                                 th:src="'data:image4/jpeg;base64,' + ${product.image4}">
-                        </td>
-                        <td><a th:href="@{/update-product/{id}(id= ${product.id})}" class="btn btn-primary">Update</a></td>
-                        <td>
-                            <a th:if="${product.deleted} == true" th:href="@{/enable-product/(id = ${product.id})}"
-                               class="btn btn-primary">Enable</a>
-                            <a th:if="${product.deleted} == false" th:href="@{/delete-product/(id = ${product.id})}"
-                               class=" btn btn-danger">Delete</a>
-                        </td>
+                    <tr th:each = "admin : ${manageAdmin}">
+                        <th scope="row" th:text = "${admin.id}"></th>
+                        <td th:text = "${admin.firstName}"></td>
+                        <td th:text = "${admin.lastName}"></td>
+                        <td th:text = "${admin.password}"></td>
+                        <td th:text = "${admin.username}"></td>
                     </tr>
                     </tbody>
                 </table>
 
 
                 <!--Pagination  -->
-                <nav aria-label="...">
+                <!--<nav aria-label="...">
                     <ul class="pagination" >
                         <li th:if= "${currentPage != 0}" class="page-item ">
                             <a th:href = "@{'/products/' + ${currentPage - 1}}" class="page-link">Previous</a>
@@ -111,7 +79,7 @@
                             <a th:href = "@{'/products/' + ${currentPage + 1}}" class="page-link" href="#">Next</a>
                         </li>
                     </ul>
-                </nav>
+                </nav>-->
                 <!--Pagination  -->
             </div>
             <!-- /.container-fluid -->

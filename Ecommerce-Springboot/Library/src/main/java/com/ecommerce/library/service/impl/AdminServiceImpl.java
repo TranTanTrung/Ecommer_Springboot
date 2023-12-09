@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -31,5 +32,10 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public Admin findByUsername(String username) {
         return adminRepository.findByUsername(username);
+    }
+
+    @Override
+    public List<Admin> findAll() {
+        return adminRepository.findAll();
     }
 }

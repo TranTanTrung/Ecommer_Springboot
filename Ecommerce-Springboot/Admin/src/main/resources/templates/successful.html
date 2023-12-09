@@ -65,10 +65,13 @@
 
                 <!-- End of Main Content -->
 
+                <div class="text-right mt-3">
+                    <a th:href="@{/orders/export/excel}" class="btn btn-success">Export to Excel</a>
+                </div>
+
                 <!-- Footer -->
                 <footer th:replace="~{fragments::footer}"></footer>
                 <!-- End of Footer -->
-                <a th:href="@{/orders/export/excel}" class="btn btn-success">Export to Excel</a>
             </div>
             <!-- End of Content Wrapper -->
 

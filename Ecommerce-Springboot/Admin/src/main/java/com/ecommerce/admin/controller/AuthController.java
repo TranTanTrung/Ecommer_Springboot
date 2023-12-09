@@ -1,6 +1,7 @@
 package com.ecommerce.admin.controller;
 
 import com.ecommerce.library.dto.AdminDto;
+import com.ecommerce.library.dto.ProductDto;
 import com.ecommerce.library.model.Admin;
 import com.ecommerce.library.service.AdminService;
 import jakarta.validation.Valid;
@@ -17,6 +18,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 public class AuthController {
@@ -29,6 +33,17 @@ public class AuthController {
     public String login(Model model) {
         model.addAttribute("title", "Login Page");
         return "login";
+    }
+
+    @GetMapping("/manageAdmin")
+    public String manageAdmin(Model model, Principal principal) {
+        if (principal == null) {
+            return "redirect:/login";
+        }
+        List<Admin> admins = adminService.findAll();
+        model.addAttribute("manageAdmin", admins);
+        model.addAttribute("size", admins.size());
+        return "manageAdmin";
     }
 
     //Profile
