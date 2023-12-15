@@ -268,6 +268,15 @@ public class ProductServiceImpl implements ProductService {
         return transferData(productRepository.searchProducts(keyword));
     }
 
+    @Override
+    public void updateProductQuantity(Long productId, int quantity) {
+        Product product = productRepository.findById(productId).orElse(null);
+        if (product != null) {
+            product.setCurrentQuantity(product.getCurrentQuantity() - quantity);
+            productRepository.save(product);
+        }
+    }
+
     private Page toPage(List list, Pageable pageable) {
         if (pageable.getOffset() >= list.size()) {
             return Page.empty();

@@ -86,7 +86,7 @@ public class OrderController {
         } else {
             Customer customer = customerService.findByUsername(principal.getName());
             ShoppingCart cart = customer.getCart();
-            Order order = orderService.save(cart);
+            Order order = orderService.saveAndAdjustQuantities(cart);
             session.removeAttribute("totalItems");
             model.addAttribute("order", order);
             model.addAttribute("title", "Order Detail");

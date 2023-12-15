@@ -5,6 +5,7 @@ import com.ecommerce.library.repository.CustomerRepository;
 import com.ecommerce.library.repository.OrderDetailRepository;
 import com.ecommerce.library.repository.OrderRepository;
 import com.ecommerce.library.service.OrderService;
+import com.ecommerce.library.service.ProductService;
 import com.ecommerce.library.service.ShoppingCartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class OrderServiceImpl implements OrderService {
     private final CustomerRepository customerRepository;
     private final ShoppingCartService cartService;
 
+    private final ProductService productService;
     @Override
     @Transactional
     public Order save(ShoppingCart shoppingCart) {
@@ -124,5 +126,16 @@ public class OrderServiceImpl implements OrderService {
         order.setSuccess(false);
         order.setOrderStatus("Order Failed");
         return orderRepository.save(order);
+    }
+
+    @Override
+    public Order saveAndAdjustQuantities(ShoppingCart cart) {
+        Order order = save(cart);
+
+        // Update product quantities based on the items in the cart
+        for (OrderDetail orderDetail : order.getOrderDetailList()) {
+            productService.updateProductQuantity(orderDetail.getProduct().getId(), orderDetail.getOrder().getQuantity());
+        }
+        return order;
     }
 }
