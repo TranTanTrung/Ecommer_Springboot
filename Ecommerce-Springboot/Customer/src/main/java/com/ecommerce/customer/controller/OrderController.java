@@ -86,7 +86,7 @@ public class OrderController {
         } else {
             Customer customer = customerService.findByUsername(principal.getName());
             ShoppingCart cart = customer.getCart();
-            Order order = orderService.saveAndAdjustQuantities(cart);
+            Order order = orderService.save(cart);
             session.removeAttribute("totalItems");
             model.addAttribute("order", order);
             model.addAttribute("title", "Order Detail");
@@ -95,5 +95,4 @@ public class OrderController {
             return "order-detail";
         }
     }
-
 }

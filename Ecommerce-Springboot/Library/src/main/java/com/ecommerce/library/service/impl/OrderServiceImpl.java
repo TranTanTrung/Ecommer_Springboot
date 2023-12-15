@@ -127,15 +127,4 @@ public class OrderServiceImpl implements OrderService {
         order.setOrderStatus("Order Failed");
         return orderRepository.save(order);
     }
-
-    @Override
-    public Order saveAndAdjustQuantities(ShoppingCart cart) {
-        Order order = save(cart);
-
-        // Update product quantities based on the items in the cart
-        for (OrderDetail orderDetail : order.getOrderDetailList()) {
-            productService.updateProductQuantity(orderDetail.getProduct().getId(), orderDetail.getOrder().getQuantity());
-        }
-        return order;
-    }
 }

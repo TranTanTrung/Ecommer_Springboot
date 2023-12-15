@@ -22,5 +22,4 @@ public interface OrderService {
     Order cancelOrder(Long id);
     Order successfulOrder(Long id);
     Order failedOrder(Long id);
-    Order saveAndAdjustQuantities(ShoppingCart cart);
 }

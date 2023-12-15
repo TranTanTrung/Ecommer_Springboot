@@ -54,6 +54,4 @@ public interface ProductService {
     List<ProductDto> findByCategoryId(Long id);
 
     List<ProductDto> searchProducts(String keyword);
-
-    void updateProductQuantity(Long productId, int quantity);
 }
