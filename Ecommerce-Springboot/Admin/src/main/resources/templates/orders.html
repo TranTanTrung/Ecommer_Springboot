@@ -29,6 +29,7 @@
                 <table class="table">
                     <thead>
                     <tr>
+                        <th>Mã đơn hàng</th>
                         <th class="order-date">Ngày Đặt</th>
                         <th>Ngày giao</th>
                         <th class="price-pr">Tình trạng</th>
@@ -40,6 +41,7 @@
                     </thead>
                     <tbody>
                     <tr th:each="order : ${orders}">
+                        <td th:text="${order.id}"></td>
                         <td class="order-date">
                             <span><b>[(${order.orderDate})]</b></span>
                         </td>
