@@ -24,4 +24,19 @@ public class OrderDetail {
     @JoinColumn(name = "product_id", referencedColumnName = "product_id")
     private Product product;
 
+    private String name;
+    private int quantity;
+    private double costPrice;
+
+    @Override
+    public String toString() {
+        return "OrderDetail{" +
+                "id=" + id +
+                ", order=" + (order != null ? order.getId() : null) +
+                ", product=" + (product != null ? product.getId() : null) +
+                ", name='" + name + '\'' +
+                ", quantity=" + quantity +
+                ", costPrice=" + costPrice +
+                '}';
+    }
 }
