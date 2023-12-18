@@ -1,6 +1,8 @@
 package com.ecommerce.admin.controller;
 
 import com.ecommerce.library.model.Order;
+import com.ecommerce.library.model.OrderDetail;
+import com.ecommerce.library.service.OrderDetailService;
 import com.ecommerce.library.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,7 @@ import java.util.List;
 public class OrderController {
 
     private final OrderService orderService;
+    private final OrderDetailService orderDetailService;
 
     @GetMapping("/orders")
     public String getAll(Model model, Principal principal) {
