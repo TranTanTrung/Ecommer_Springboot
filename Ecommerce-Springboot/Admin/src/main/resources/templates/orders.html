@@ -36,7 +36,6 @@
                         <th class="total-pr">Tổng tiền</th>
                         <th>Phương thức thanh toán</th>
                         <th>Hoạt động</th>
-                        <th>Order Detail</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -70,9 +69,6 @@
                                class="btn btn-primary">Successful</a>
                             <a th:if="${order.success} == false" th:href="@{/successful-order(id = ${order.id})}"
                                class="btn btn-secondary">Failed</a>
-                        </td>
-                        <td>
-                            <a href="#" class="btn btn-primary">Xem Chi Tiết</a>
                         </td>
                         </a>
                         </td>
