@@ -34,6 +34,7 @@
                         <th>Tên sản phẩm</th>
                         <th>Số lượng</th>
                         <th>Giá</th>
+                        <th>Export</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -42,7 +43,11 @@
                         <td th:text="${orderdetail.product != null ? orderdetail.product.id : ''}"></td>
                         <td th:text="${orderdetail.name}"></td>
                         <td th:text="${orderdetail.quantity}"></td>
-                        <td th:text="${#numbers.formatDecimal(orderdetail.costPrice, 0, 'COMMA', 2, 'POINT')} + ' VNĐ'"></td>
+                        <td th:text="${#numbers.formatDecimal(orderdetail.costPrice, 0, 'COMMA', 2, 'POINT')}"></td>
+
+                        <td>
+                            <a th:href="@{/export/toWord(orderId=${orderdetail.order != null ? orderdetail.order.id : ''})}" class="btn btn-primary">Export</a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
