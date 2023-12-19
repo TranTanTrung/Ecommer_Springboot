@@ -24,6 +24,8 @@ public class OrderDetail {
     @JoinColumn(name = "product_id", referencedColumnName = "product_id")
     private Product product;
 
+    @Column(columnDefinition = "LONGTEXT")
+    @Lob
     private String name;
     private int quantity;
     private double costPrice;

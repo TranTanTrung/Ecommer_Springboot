@@ -38,15 +38,17 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="orderdetail : ${orderDetails}">
+                    <tr th:each="orderdetail, iterStat : ${orderDetails}">
                         <td th:text="${orderdetail.order != null ? orderdetail.order.id : ''}"></td>
                         <td th:text="${orderdetail.product != null ? orderdetail.product.id : ''}"></td>
                         <td th:text="${orderdetail.name}"></td>
                         <td th:text="${orderdetail.quantity}"></td>
                         <td th:text="${#numbers.formatDecimal(orderdetail.costPrice, 0, 'COMMA', 2, 'POINT')}"></td>
-
                         <td>
-                            <a th:href="@{/export/toWord(orderId=${orderdetail.order != null ? orderdetail.order.id : ''})}" class="btn btn-primary">Export</a>
+                            <form th:action="@{/export/toWord}" method="get">
+                                <input type="hidden" name="orderDetailId" th:value="${orderdetail.id}" />
+                                <button type="submit" class="btn btn-primary">Export</button>
+                            </form>
                         </td>
                     </tr>
                     </tbody>
