@@ -43,4 +43,6 @@ public class Product {
     private boolean is_activated;
     private boolean is_deleted;
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<ProductReview> reviews;
 }

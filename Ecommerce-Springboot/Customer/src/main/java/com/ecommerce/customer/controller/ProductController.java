@@ -3,14 +3,15 @@ package com.ecommerce.customer.controller;
 import com.ecommerce.library.dto.CategoryDto;
 import com.ecommerce.library.dto.ProductDto;
 import com.ecommerce.library.model.Category;
+import com.ecommerce.library.model.Product;
+import com.ecommerce.library.model.ProductReview;
 import com.ecommerce.library.service.CategoryService;
+import com.ecommerce.library.service.ProductReviewService;
 import com.ecommerce.library.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -21,6 +22,8 @@ public class ProductController {
     private final ProductService productService;
 
     private final CategoryService categoryService;
+
+    private final ProductReviewService productReviewService;
 
     @GetMapping("/menu")
     public String menu(Model model) {
@@ -42,6 +45,13 @@ public class ProductController {
         model.addAttribute("title", "Product Detail");
         model.addAttribute("page", "Product Detail");
         model.addAttribute("productDetail", product);
+
+        // Thêm product vào model
+        model.addAttribute("product", product);
+
+        List<ProductReview> productReviews = productReviewService.findByProductId(id);
+        model.addAttribute("productReview", productReviews);
+
         return "product-detail";
     }
 
@@ -111,5 +121,35 @@ public class ProductController {
         model.addAttribute("page", "Result Search");
         model.addAttribute("products", productDtos);
         return "products";
+    }
+
+    @PostMapping("/product-detail/{productId}/add-review")
+    public String addReview(@PathVariable Long productId,
+                            @RequestParam int rating,
+                            @RequestParam String username,
+                            @RequestParam String phone,
+                            @RequestParam String email,
+                            @RequestParam String comment) {
+        // Create a ProductReview instance
+        ProductReview productReview = new ProductReview();
+        Product product = productService.findById(productId);
+
+        if (product != null) {
+            productReview.setProduct(product);
+            productReview.setRating(rating);
+            productReview.setUsername(username);
+            productReview.setPhone(phone);
+            productReview.setEmail(email);
+            productReview.setComment(comment);
+
+            // Save the product review (you need to inject your ProductReviewService)
+            productReviewService.save(productReview);
+
+            // Redirect or display the product detail page with the updated reviews
+            return "redirect:/product-detail/" + productId;
+        } else {
+            // Handle the case where the product is not found
+            return "redirect:/error"; // You can customize this based on your error handling
+        }
     }
 }
