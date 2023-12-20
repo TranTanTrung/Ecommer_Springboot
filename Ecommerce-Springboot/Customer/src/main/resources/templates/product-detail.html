@@ -134,9 +134,9 @@
     <!-- Product Review Form -->
     <div class="row mt-5">
         <div class="col-md-6 offset-md-3">
-            <div class="card">
-                <div class="card-header">
-                    Leave a Review
+            <div class="card border-primary">
+                <div class="card-header text-center text-white" style="font-size: 1.2em; background-color: #007BFF;">
+                    Bình Luận
                 </div>
                 <div class="card-body">
                     <form th:action="@{'/product-detail/' + ${product.id} + '/add-review'}" method="post">
@@ -175,7 +175,7 @@
                         </div>
 
                         <!-- Submit Button -->
-                        <button type="submit" class="btn btn-primary">Submit Review</button>
+                        <button type="submit" class="btn btn-primary float-right">Submit Review</button>
                     </form>
                 </div>
             </div>
