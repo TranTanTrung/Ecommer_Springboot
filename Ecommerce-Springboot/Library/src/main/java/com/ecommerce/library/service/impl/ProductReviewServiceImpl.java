@@ -29,4 +29,14 @@ public class ProductReviewServiceImpl implements ProductReviewService {
         return productReviewRepository.findByProduct_Id(productId);
     }
 
+    @Override
+    public List<ProductReview> getAllProductReviews() {
+        return productReviewRepository.findAll();
+    }
+
+    @Override
+    public void deleteProductReview(Long id) {
+        productReviewRepository.deleteById(id);
+    }
+
 }
