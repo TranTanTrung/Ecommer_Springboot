@@ -77,7 +77,7 @@ public class LoginController {
         message.setTo(toEmail);
         message.setSubject("Chào mừng bạn đến với Denni Trần Shop");
 
-        message.setText("Bạn đã tạo tài khoản thành công, bạn đã l một thaành viên của Denni Trần Shop.");
+        message.setText("Bạn đã tạo tài khoản thành công, bạn đã là một thaành viên của Denni Trần Shop.");
         mailSender.send(message);
     }
 }
