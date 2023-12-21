@@ -6,10 +6,14 @@ import com.ecommerce.library.model.Admin;
 import com.ecommerce.library.model.Customer;
 import com.ecommerce.library.service.AdminService;
 import com.ecommerce.library.service.CustomerService;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,6 +27,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.io.File;
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 
@@ -120,9 +126,9 @@ public class AuthController {
             if (adminDto.getPassword().equals(adminDto.getRepeatPassword())) {
                 adminDto.setPassword(passwordEncoder.encode(adminDto.getPassword()));
                 adminService.save(adminDto);
+                sendEmailWithImage(adminDto.getUsername(), "C:\\TIEULUANTOTNGHIEP\\Ecommerce-Springboot\\Admin\\src\\main\\resources\\static\\img\\image_sendmail_login.png");
                 System.out.println("success");
                 model.addAttribute("success", "Register successfully!");
-                sendEmail(adminDto.getUsername());
                 model.addAttribute("adminDto", adminDto);
             } else {
                 model.addAttribute("adminDto", adminDto);
@@ -136,12 +142,22 @@ public class AuthController {
         return "register";
     }
 
-    public void sendEmail(String toEmail) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(toEmail);
-        message.setSubject("Chào mừng bạn đến với Denni Trần Shop");
+    public void sendEmailWithImage(String toEmail, String imagePath) throws MessagingException, IOException {
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-        message.setText("Chúc mừng bạn đã trở thành một thành viên của đội quản trị!!!");
+        // Thiết lập người nhận và chủ đề
+        helper.setTo(toEmail);
+        helper.setSubject("Chào mừng bạn đến với Denni Trần Shop");
+
+        // Tạo phần văn bản của email
+        helper.setText("Chúc mừng bạn đã trở thành một thành viên của đội quản trị!!!");
+
+        // Thêm hình ảnh như là một phần nhúng
+        FileSystemResource file = new FileSystemResource(new File(imagePath));
+        helper.addInline("image", file);
+
+        // Gửi email
         mailSender.send(message);
     }
 }
