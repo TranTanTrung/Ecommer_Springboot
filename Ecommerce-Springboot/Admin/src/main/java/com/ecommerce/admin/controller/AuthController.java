@@ -8,9 +8,13 @@ import com.ecommerce.library.service.AdminService;
 import com.ecommerce.library.service.CustomerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,7 +32,8 @@ public class AuthController {
     private final AdminService adminService;
     private final CustomerService customerService;
     private final BCryptPasswordEncoder passwordEncoder;
-
+    @Autowired
+    private JavaMailSender mailSender;
 
     @RequestMapping("/login")
     public String login(Model model) {
@@ -117,6 +122,7 @@ public class AuthController {
                 adminService.save(adminDto);
                 System.out.println("success");
                 model.addAttribute("success", "Register successfully!");
+                sendEmail(adminDto.getUsername());
                 model.addAttribute("adminDto", adminDto);
             } else {
                 model.addAttribute("adminDto", adminDto);
@@ -128,6 +134,14 @@ public class AuthController {
             model.addAttribute("errors", "The server has been wrong!");
         }
         return "register";
+    }
 
+    public void sendEmail(String toEmail) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(toEmail);
+        message.setSubject("Chào mừng bạn đến với Denni Trần Shop");
+
+        message.setText("Chúc mừng bạn đã trở thành một thành viên của đội quản trị!!!");
+        mailSender.send(message);
     }
 }
